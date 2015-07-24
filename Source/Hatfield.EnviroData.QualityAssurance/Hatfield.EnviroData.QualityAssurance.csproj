@@ -60,10 +60,13 @@
     <Compile Include="DataQualityCheckingChainConfiguration.cs" />
     <Compile Include="DataQualityCheckingData\StringCompareCheckingData.cs" />
     <Compile Include="DataQualityCheckingToolConfiguration.cs" />
+    <Compile Include="DataQualityCheckingToolFactory.cs" />
     <Compile Include="DataQualityCheckingTool\SampleMatrixTypeCheckingTool.cs" />
     <Compile Include="IDataFetchCriteria.cs" />
     <Compile Include="IDataQualityCheckingData.cs" />
     <Compile Include="IDataQualityCheckingTool.cs" />
+    <Compile Include="IDataQualityCheckingToolFactory.cs" />
+    <Compile Include="IQualityCheckingResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

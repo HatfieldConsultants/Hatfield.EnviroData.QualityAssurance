@@ -7,19 +7,29 @@ using Hatfield.EnviroData.QualityAssurance.DataQualityCheckingData;
 
 namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
 {
-    public class SampleMatrixTypeCheckingTool : IDataQualityCheckingTool<StringCompareCheckingData, Hatfield.EnviroData.Core.Action>
+    public class SampleMatrixTypeCheckingTool : IDataQualityCheckingTool
     {
-        public StringCompareCheckingData DataQualityCheckingData
+        public IDataQualityCheckingData DataQualityCheckingData
         {
             get { throw new NotImplementedException(); }
         }
 
-        public bool Check(Core.Action data)
+        public IQualityCheckingResult Check(object data)
         {
             throw new NotImplementedException();
         }
 
-        public Core.Action Correct(Core.Action data)
+        public IQualityCheckingResult Correct(object data)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsDataQualityChekcingDataSupport(IDataQualityCheckingData dataQualityCheckingData)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsDataSupport(object data)
         {
             throw new NotImplementedException();
         }
