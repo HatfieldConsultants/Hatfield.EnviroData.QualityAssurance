@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{02D73824-F5F5-4CDE-B409-6A8168CE417E}"
+	ProjectSection(SolutionItems) = preProject
+		Deploy\Build.xml = Deploy\Build.xml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E6DDF227-63AA-4806-90E1-2946AADABFE7}"
 	ProjectSection(SolutionItems) = preProject
