@@ -23,7 +23,7 @@ namespace Hatfield.EnviroData.QualityAssurance.DataFetchCriterias
             }
         }
 
-        public IEnumerable<Core.Action> FetchData()
+        public IEnumerable<object> FetchData()
         {
             return _wqDataRepository.GetAllWQSampleDataActions();
         }

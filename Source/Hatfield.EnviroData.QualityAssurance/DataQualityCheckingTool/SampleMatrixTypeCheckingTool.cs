@@ -19,7 +19,7 @@ namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
             throw new NotImplementedException();
         }
 
-        public IQualityCheckingResult Correct(object data)
+        public void Correct(object data)
         {
             throw new NotImplementedException();
         }

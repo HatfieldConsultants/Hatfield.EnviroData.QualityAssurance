@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataFetchCriterias\GetAllWaterQualitySampleDataCriteria.cs" />
+    <Compile Include="WaterQualityDataQualityChecker.cs" />
     <Compile Include="DataQualityCheckingChainConfiguration.cs" />
     <Compile Include="DataQualityCheckingData\StringCompareCheckingData.cs" />
     <Compile Include="DataQualityCheckingToolConfiguration.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="IDataQualityCheckingToolFactory.cs" />
     <Compile Include="IQualityCheckingResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QualityCheckingResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

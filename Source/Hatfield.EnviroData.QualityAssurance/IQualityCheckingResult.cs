@@ -7,5 +7,7 @@ namespace Hatfield.EnviroData.QualityAssurance
 {
     public interface IQualityCheckingResult
     {
+        string Message { get; }
+        bool NeedCorrection { get; }
     }
 }

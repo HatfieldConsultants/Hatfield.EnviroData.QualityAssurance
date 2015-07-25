@@ -9,7 +9,7 @@ namespace Hatfield.EnviroData.QualityAssurance
 {
     public interface IDataFetchCriteria
     {
-        IEnumerable<Hatfield.EnviroData.Core.Action> FetchData();
+        IEnumerable<object> FetchData();
         string CriteriaDescription { get; }
     }
 }
