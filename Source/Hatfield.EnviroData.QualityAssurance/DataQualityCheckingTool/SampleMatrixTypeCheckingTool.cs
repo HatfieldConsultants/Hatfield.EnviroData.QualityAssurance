@@ -26,12 +26,12 @@ namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
 
         public bool IsDataQualityChekcingDataSupport(IDataQualityCheckingData dataQualityCheckingData)
         {
-            throw new NotImplementedException();
+            return dataQualityCheckingData is StringCompareCheckingData;
         }
 
         public bool IsDataSupport(object data)
         {
-            throw new NotImplementedException();
+            return data is Hatfield.EnviroData.Core.Action;
         }
     }
 }
