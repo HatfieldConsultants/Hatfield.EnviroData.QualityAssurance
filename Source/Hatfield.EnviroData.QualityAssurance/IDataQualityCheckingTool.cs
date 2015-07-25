@@ -7,10 +7,9 @@ namespace Hatfield.EnviroData.QualityAssurance
 {    
     public interface IDataQualityCheckingTool
     {
-        IDataQualityCheckingData DataQualityCheckingData { get; }
-        IQualityCheckingResult Check(object data);
-        void Correct(object data);
-        bool IsDataQualityChekcingDataSupport(IDataQualityCheckingData dataQualityCheckingData);
+        IQualityCheckingResult Check(object data, IDataQualityCheckingRule dataQualityCheckingRule);
+        void Correct(object data, IDataQualityCheckingRule dataQualityCheckingRule);
+        bool IsDataQualityChekcingRuleSupported(IDataQualityCheckingRule dataQualityCheckingRule);
         bool IsDataSupport(object data);
     }
 }

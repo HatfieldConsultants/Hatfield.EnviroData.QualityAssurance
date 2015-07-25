@@ -8,7 +8,7 @@ using Moq;
 
 using Hatfield.EnviroData.Core;
 using Hatfield.EnviroData.QualityAssurance;
-using Hatfield.EnviroData.QualityAssurance.DataQualityCheckingData;
+using Hatfield.EnviroData.QualityAssurance.DataQualityCheckingRules;
 using Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool;
 
 namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
@@ -16,16 +16,17 @@ namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
     [TestFixture]
     public class SampleMatrixTypeCheckingToolTest
     {
+ 
         [Test]
         public void IsDataQualityChekcingDataSupportTest()
         {
+            var successTestQualityCheckingRule = new StringCompareCheckingRule("test", false, "test");
+            var mockQualityCheckingRule = new Mock<IDataQualityCheckingRule>();
+
             var testTool = new SampleMatrixTypeCheckingTool();
 
-            var successTestQualityCheckingData = new StringCompareCheckingData("test", false, "test");
-            var mockQualityCheckingData = new Mock<IDataQualityCheckingData>();
-
-            Assert.True(testTool.IsDataQualityChekcingDataSupport(successTestQualityCheckingData));
-            Assert.False(testTool.IsDataQualityChekcingDataSupport(mockQualityCheckingData.Object));
+            Assert.True(testTool.IsDataQualityChekcingRuleSupported(successTestQualityCheckingRule));
+            Assert.False(testTool.IsDataQualityChekcingRuleSupported(mockQualityCheckingRule.Object));
         }
 
         [Test]

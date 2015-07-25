@@ -3,35 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Hatfield.EnviroData.QualityAssurance.DataQualityCheckingData;
+using Hatfield.EnviroData.Core;
+using Hatfield.EnviroData.QualityAssurance.DataQualityCheckingRules;
 
 namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
 {
     public class SampleMatrixTypeCheckingTool : IDataQualityCheckingTool
     {
-        public IDataQualityCheckingData DataQualityCheckingData
-        {
-            get { throw new NotImplementedException(); }
-        }
 
-        public IQualityCheckingResult Check(object data)
+        public IQualityCheckingResult Check(object data, IDataQualityCheckingRule dataQualityCheckingRule)
         {
             throw new NotImplementedException();
         }
 
-        public void Correct(object data)
+        public void Correct(object data, IDataQualityCheckingRule dataQualityCheckingRule)
         {
             throw new NotImplementedException();
         }
 
-        public bool IsDataQualityChekcingDataSupport(IDataQualityCheckingData dataQualityCheckingData)
+        public bool IsDataQualityChekcingRuleSupported(IDataQualityCheckingRule dataQualityCheckingRule)
         {
-            return dataQualityCheckingData is StringCompareCheckingData;
+            return dataQualityCheckingRule is StringCompareCheckingRule;
         }
 
         public bool IsDataSupport(object data)
         {
             return data is Hatfield.EnviroData.Core.Action;
+        }
+
+        private bool IsSampleMatrixTypeDataMeetQualityCheckingRule()
+        {
+            throw new NotImplementedException();
         }
     }
 }

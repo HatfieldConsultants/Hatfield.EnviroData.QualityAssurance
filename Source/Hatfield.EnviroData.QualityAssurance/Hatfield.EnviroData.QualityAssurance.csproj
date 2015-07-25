@@ -59,12 +59,12 @@
     <Compile Include="DataFetchCriterias\GetAllWaterQualitySampleDataCriteria.cs" />
     <Compile Include="WaterQualityDataQualityChecker.cs" />
     <Compile Include="DataQualityCheckingChainConfiguration.cs" />
-    <Compile Include="DataQualityCheckingData\StringCompareCheckingData.cs" />
+    <Compile Include="DataQualityCheckingRules\StringCompareCheckingRule.cs" />
     <Compile Include="DataQualityCheckingToolConfiguration.cs" />
     <Compile Include="DataQualityCheckingToolFactory.cs" />
     <Compile Include="DataQualityCheckingTool\SampleMatrixTypeCheckingTool.cs" />
     <Compile Include="IDataFetchCriteria.cs" />
-    <Compile Include="IDataQualityCheckingData.cs" />
+    <Compile Include="IDataQualityCheckingRule.cs" />
     <Compile Include="IDataQualityCheckingTool.cs" />
     <Compile Include="IDataQualityCheckingToolFactory.cs" />
     <Compile Include="IQualityCheckingResult.cs" />

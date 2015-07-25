@@ -8,6 +8,6 @@ namespace Hatfield.EnviroData.QualityAssurance
     public class DataQualityCheckingToolConfiguration
     {        
         public Type DataQualityCheckingToolType { get; set; }
-        public IDataQualityCheckingData DataQualityCheckingData { get; set; }
+        public IDataQualityCheckingRule DataQualityCheckingRule { get; set; }
     }
 }

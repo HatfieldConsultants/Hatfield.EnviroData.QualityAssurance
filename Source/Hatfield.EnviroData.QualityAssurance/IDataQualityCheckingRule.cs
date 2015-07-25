@@ -6,7 +6,7 @@ using System.Text;
 namespace Hatfield.EnviroData.QualityAssurance
 {
     //class for the QAQC checking data
-    public interface IDataQualityCheckingData
+    public interface IDataQualityCheckingRule
     {
     }
 }

@@ -44,12 +44,12 @@ namespace Hatfield.EnviroData.QualityAssurance
 
                     foreach (var dataToCheck in allDataToCheck)
                     {
-                        var qcResult = dataQualityCheckingTool.Check(dataToCheck);
+                        var qcResult = dataQualityCheckingTool.Check(dataToCheck, toolConfiguration.DataQualityCheckingRule);
                         qualityCheckingResult.Add(qcResult);
                         //if need correction
                         if (qcResult.NeedCorrection && _chainConfiguration.NeedToCorrectData)
                         {
-                            dataQualityCheckingTool.Correct(dataToCheck);
+                            dataQualityCheckingTool.Correct(dataToCheck, toolConfiguration.DataQualityCheckingRule);
                             needToUpdateData = true;
                         }
                     }
