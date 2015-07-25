@@ -51,7 +51,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Source\Hatfield.EnviroData.QualityAssurance\Hatfield.EnviroData.QualityAssurance.csproj">
+    <ProjectReference Include="..\..\Source\Hatfield.EnviroData.QualityAssurance\Hatfield.EnviroData.QualityAssurance.csproj">
       <Project>{db102cc3-78fb-4df7-a339-4326369bdba3}</Project>
       <Name>Hatfield.EnviroData.QualityAssurance</Name>
     </ProjectReference>

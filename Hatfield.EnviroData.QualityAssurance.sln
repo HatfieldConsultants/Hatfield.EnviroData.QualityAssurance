@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{0180CCA8-7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.QualityAssurance", "Source\Hatfield.EnviroData.QualityAssurance\Hatfield.EnviroData.QualityAssurance.csproj", "{DB102CC3-78FB-4DF7-A339-4326369BDBA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.QualityAssurance.Test", "Hatfield.EnviroData.QualityAssurance.Test\Hatfield.EnviroData.QualityAssurance.Test.csproj", "{F0BA3B89-E13F-47E0-9B79-BCF88E79E431}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.QualityAssurance.Test", "Test\Hatfield.EnviroData.QualityAssurance.Test\Hatfield.EnviroData.QualityAssurance.Test.csproj", "{F0BA3B89-E13F-47E0-9B79-BCF88E79E431}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
