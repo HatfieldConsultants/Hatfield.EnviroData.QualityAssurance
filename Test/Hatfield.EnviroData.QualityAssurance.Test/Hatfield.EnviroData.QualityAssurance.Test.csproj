@@ -11,7 +11,7 @@
     <AssemblyName>Hatfield.EnviroData.QualityAssurance.Test</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <HintPath>$(SolutionDir)\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,7 +51,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Source\Hatfield.EnviroData.QualityAssurance\Hatfield.EnviroData.QualityAssurance.csproj">
+    <ProjectReference Include="$(SolutionDir)\Source\Hatfield.EnviroData.QualityAssurance\Hatfield.EnviroData.QualityAssurance.csproj">
       <Project>{db102cc3-78fb-4df7-a339-4326369bdba3}</Project>
       <Name>Hatfield.EnviroData.QualityAssurance</Name>
     </ProjectReference>
