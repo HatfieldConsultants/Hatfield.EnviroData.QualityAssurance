@@ -9,5 +9,7 @@ namespace Hatfield.EnviroData.QualityAssurance
     {
         string Message { get; }
         bool NeedCorrection { get; }
+        QualityCheckingResultLevel Level { get; }
     }
+
 }

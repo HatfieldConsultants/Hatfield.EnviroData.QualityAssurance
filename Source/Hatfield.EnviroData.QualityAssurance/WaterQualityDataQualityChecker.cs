@@ -26,12 +26,12 @@ namespace Hatfield.EnviroData.QualityAssurance
             var qualityCheckingResult = new List<IQualityCheckingResult>();
 
             var allDataToCheck = _chainConfiguration.DataFetchCriteria.FetchData();
-            qualityCheckingResult.Add(new QualityCheckingResult("Fetch data for quality chekcing by " + _chainConfiguration.DataFetchCriteria.CriteriaDescription, false));
+            qualityCheckingResult.Add(new QualityCheckingResult("Fetch data for quality chekcing by " + _chainConfiguration.DataFetchCriteria.CriteriaDescription, false, QualityCheckingResultLevel.Info));
 
             if (allDataToCheck == null && !allDataToCheck.Any())
             {
                 //no data found, done
-                qualityCheckingResult.Add(new QualityCheckingResult("No data found by the criteria, quality checking finishes.", false));
+                qualityCheckingResult.Add(new QualityCheckingResult("No data found by the criteria, quality checking finishes.", false, QualityCheckingResultLevel.Info));
             }
             else
             {

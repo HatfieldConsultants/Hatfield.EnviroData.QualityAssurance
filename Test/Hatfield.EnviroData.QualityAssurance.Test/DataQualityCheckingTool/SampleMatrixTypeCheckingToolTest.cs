@@ -16,7 +16,12 @@ namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
     [TestFixture]
     public class SampleMatrixTypeCheckingToolTest
     {
- 
+        [Test]
+        public void CheckTest()
+        { 
+            
+        }
+
         [Test]
         public void IsDataQualityChekcingDataSupportTest()
         {

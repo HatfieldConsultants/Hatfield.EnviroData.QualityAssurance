@@ -12,6 +12,7 @@ using Hatfield.EnviroData.QualityAssurance.DataFetchCriterias;
 
 namespace Hatfield.EnviroData.QualityAssurance.Test.DataFetchCriterias
 {
+    [TestFixture]
     public class GetAllWaterQualitySampleDataCriteriaTest
     {
         [Test]

@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataFetchCriterias\GetAllWaterQualitySampleDataCriteriaTest.cs" />
+    <Compile Include="DataQualityCheckingRules\StringCompareCheckingRuleTest.cs" />
     <Compile Include="DataQualityCheckingToolFactoryTest.cs" />
     <Compile Include="DataQualityCheckingTool\SampleMatrixTypeCheckingToolTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,6 +79,7 @@
       <Name>Hatfield.EnviroData.QualityAssurance</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
