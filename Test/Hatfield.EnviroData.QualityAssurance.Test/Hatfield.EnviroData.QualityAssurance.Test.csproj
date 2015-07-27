@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataFetchCriterias\GetAllWaterQualitySampleDataCriteriaTest.cs" />
     <Compile Include="DataQualityCheckingToolFactoryTest.cs" />
     <Compile Include="DataQualityCheckingTool\SampleMatrixTypeCheckingToolTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
