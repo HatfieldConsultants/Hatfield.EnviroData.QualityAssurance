@@ -7,6 +7,7 @@ using NUnit.Framework;
 using Moq;
 
 using Hatfield.EnviroData.Core;
+using Hatfield.EnviroData.WQDataProfile;
 using Hatfield.EnviroData.QualityAssurance;
 using Hatfield.EnviroData.QualityAssurance.DataQualityCheckingRules;
 using Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool;
@@ -19,7 +20,10 @@ namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
         [Test]
         public void DataNotSupportCheckTest()
         {
-            var testTool = new SampleMatrixTypeCheckingTool();
+            var mockVersionHelper = new Mock<IDataVersioningHelper>();
+            var mockRepository = new Mock<IRepository<CV_RelationshipType>>();
+
+            var testTool = new SampleMatrixTypeCheckingTool(mockVersionHelper.Object, mockRepository.Object);
             var testQualityCheckingRule = new StringCompareCheckingRule("test", false, "test");
 
             var dataNotSupportCheckResult = testTool.Check(1, testQualityCheckingRule);
@@ -33,7 +37,10 @@ namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
         [Test]
         public void RuleNotSupportCheckTest()
         {
-            var testTool = new SampleMatrixTypeCheckingTool();
+            var mockVersionHelper = new Mock<IDataVersioningHelper>();
+            var mockRepository = new Mock<IRepository<CV_RelationshipType>>();
+
+            var testTool = new SampleMatrixTypeCheckingTool(mockVersionHelper.Object, mockRepository.Object);
             var mockQualityCheckingRule = new Mock<IDataQualityCheckingRule>();
 
             var dataNotSupportCheckResult = testTool.Check(new Hatfield.EnviroData.Core.Action(), mockQualityCheckingRule.Object);
@@ -103,8 +110,12 @@ namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
             };
 
             var testQualityCheckingRule = new StringCompareCheckingRule("Water", true, "test");
-            var testTool = new SampleMatrixTypeCheckingTool();
 
+            var mockVersionHelper = new Mock<IDataVersioningHelper>();
+            var mockRepository = new Mock<IRepository<CV_RelationshipType>>();
+
+            var testTool = new SampleMatrixTypeCheckingTool(mockVersionHelper.Object, mockRepository.Object);
+            
             var qcResult = testTool.Check(testActionData, testQualityCheckingRule);
 
             var expextedMessageBuilder = new StringBuilder();
@@ -124,7 +135,10 @@ namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
             var successTestQualityCheckingRule = new StringCompareCheckingRule("test", false, "test");
             var mockQualityCheckingRule = new Mock<IDataQualityCheckingRule>();
 
-            var testTool = new SampleMatrixTypeCheckingTool();
+            var mockVersionHelper = new Mock<IDataVersioningHelper>();
+            var mockRepository = new Mock<IRepository<CV_RelationshipType>>();
+
+            var testTool = new SampleMatrixTypeCheckingTool(mockVersionHelper.Object, mockRepository.Object);
 
             Assert.True(testTool.IsDataQualityChekcingRuleSupported(successTestQualityCheckingRule));
             Assert.False(testTool.IsDataQualityChekcingRuleSupported(mockQualityCheckingRule.Object));
@@ -133,7 +147,10 @@ namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
         [Test]
         public void IsDataSupportTest()
         {
-            var testTool = new SampleMatrixTypeCheckingTool();
+            var mockVersionHelper = new Mock<IDataVersioningHelper>();
+            var mockRepository = new Mock<IRepository<CV_RelationshipType>>();
+
+            var testTool = new SampleMatrixTypeCheckingTool(mockVersionHelper.Object, mockRepository.Object);
             var supportData = new Hatfield.EnviroData.Core.Action();
 
             Assert.True(testTool.IsDataSupport(supportData));

@@ -52,7 +52,8 @@ namespace Hatfield.EnviroData.QualityAssurance
                             //if need correction
                             if (qcResult.NeedCorrection && _chainConfiguration.NeedToCorrectData)
                             {
-                                dataQualityCheckingTool.Correct(dataToCheck, toolConfiguration.DataQualityCheckingRule);
+                                var correctionResult = dataQualityCheckingTool.Correct(dataToCheck, toolConfiguration.DataQualityCheckingRule);
+                                qualityCheckingResult.Add(correctionResult);
                                 needToUpdateData = true;
                             }
                         }
@@ -61,9 +62,7 @@ namespace Hatfield.EnviroData.QualityAssurance
                     if (needToUpdateData)
                     {
                         //save corrected data to database
-                        _wqDataRepository.SaveChanges();
-                        var updateResult = new QualityCheckingResult("Data correction updated.", false, QualityCheckingResultLevel.Info);
-                        qualityCheckingResult.Add(updateResult);
+                        _wqDataRepository.SaveChanges();                        
                     }
                 }
                 

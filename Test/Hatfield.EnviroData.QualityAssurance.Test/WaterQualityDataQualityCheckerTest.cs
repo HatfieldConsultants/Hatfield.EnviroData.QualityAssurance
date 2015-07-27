@@ -60,6 +60,9 @@ namespace Hatfield.EnviroData.QualityAssurance.Test
             mockTool.Setup(x => x.Check(It.IsAny<object>(), It.IsAny<IDataQualityCheckingRule>())).Returns(
                 () => new QualityCheckingResult("test qc result.", true, QualityCheckingResultLevel.Info)    
             );
+            mockTool.Setup(x => x.Correct(It.IsAny<object>(), It.IsAny<IDataQualityCheckingRule>())).Returns(
+                () => new QualityCheckingResult("Data correction updated.", false, QualityCheckingResultLevel.Info)
+            );
 
             var factory = new Mock<IDataQualityCheckingToolFactory>();
             factory.Setup(x => x.GenerateDataQualityCheckingTool(It.IsAny<DataQualityCheckingToolConfiguration>())).Returns(() => mockTool.Object);

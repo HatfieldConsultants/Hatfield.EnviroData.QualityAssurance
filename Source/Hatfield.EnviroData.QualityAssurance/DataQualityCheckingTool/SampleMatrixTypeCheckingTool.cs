@@ -6,6 +6,7 @@ using System.Text;
 using Hatfield.EnviroData.Core;
 using Hatfield.EnviroData.DataAcquisition.ESDAT.Converters;
 using Hatfield.EnviroData.QualityAssurance.DataQualityCheckingRules;
+using Hatfield.EnviroData.WQDataProfile;
 
 namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
 {
@@ -13,6 +14,15 @@ namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
     {
         private string validSampleMatrixResultFormat = "Sample Result: {0}'s sample matrix meets the expected value.";
         private string invalidSampleMatrixResultFormat = "Sample Result: {0}'s sample matrix value is {1}, the expected value is {2}. Need data correction.";
+
+        private IDataVersioningHelper _dataVersioningHelper;
+        private IRepository<CV_RelationshipType> _relationShipTypeCVRepository;
+
+        public SampleMatrixTypeCheckingTool(IDataVersioningHelper versioningHelper, IRepository<CV_RelationshipType> relationShipTypeCVRepository)
+        {
+            _dataVersioningHelper = versioningHelper;
+            _relationShipTypeCVRepository = relationShipTypeCVRepository;
+        }
 
         public IQualityCheckingResult Check(object data, IDataQualityCheckingRule dataQualityCheckingRule)
         {
@@ -37,9 +47,21 @@ namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
             }
         }
 
-        public void Correct(object data, IDataQualityCheckingRule dataQualityCheckingRule)
+        public IQualityCheckingResult Correct(object data, IDataQualityCheckingRule dataQualityCheckingRule)
         {
-            throw new NotImplementedException();
+            var checkResult = this.Check(data, dataQualityCheckingRule);
+
+            if (checkResult.NeedCorrection)
+            {
+                var castedData = (Hatfield.EnviroData.Core.Action)data;
+                var castedRule = (StringCompareCheckingRule)dataQualityCheckingRule;
+
+                return GenerateCorrectSampleMatrixTypeDataNewVersion(castedData, castedRule);
+            }
+            else
+            {
+                return new QualityCheckingResult("Sample data meets quality checking rule. No correction is needed.", false, QualityCheckingResultLevel.Info);
+            }
         }
 
         public bool IsDataQualityChekcingRuleSupported(IDataQualityCheckingRule dataQualityCheckingRule)
@@ -54,6 +76,48 @@ namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
             return isSupported;
         }
 
+        private IQualityCheckingResult GenerateCorrectSampleMatrixTypeDataNewVersion(Hatfield.EnviroData.Core.Action sampleActionData,
+                                                                                     StringCompareCheckingRule rule)
+        {
+            var newVersionOfData = CorrectSampleMatrixTypeData(sampleActionData, rule);
+
+
+            var relationActionOfNewVersion = new RelatedAction();
+            relationActionOfNewVersion.Action = sampleActionData;
+            relationActionOfNewVersion.Action1 = newVersionOfData;
+            relationActionOfNewVersion.RelationshipTypeCV = QualityAssuranceConstants.SubVersionRelationCVType;
+            var relationShipCV = _relationShipTypeCVRepository.GetAll()
+                                    .Where(x => x.Name == QualityAssuranceConstants.SubVersionRelationCVType)
+                                    .FirstOrDefault();
+            relationActionOfNewVersion.CV_RelationshipType = relationShipCV;
+
+            sampleActionData.RelatedActions.Add(relationActionOfNewVersion);
+
+            return new QualityCheckingResult("Create new version for correction data.", false, QualityCheckingResultLevel.Info);
+        }
+
+        private Hatfield.EnviroData.Core.Action CorrectSampleMatrixTypeData(Hatfield.EnviroData.Core.Action sampleActionData,
+                                                                            StringCompareCheckingRule rule)
+        {
+            var newVersionOfData = _dataVersioningHelper.CloneDataToNewVersion(sampleActionData);
+
+            foreach(var featureAction in sampleActionData.FeatureActions)
+            {
+                foreach(var result in featureAction.Results)
+                {
+                    foreach(var extension in result.ResultExtensionPropertyValues)
+                    {
+                        if (extension.ExtensionProperty.PropertyName == ESDATSampleCollectionConstants.ResultExtensionPropertyValueKeyMatrixType)
+                        {
+                            extension.PropertyValue = rule.CorrectionValue;
+                        }
+                    }
+                }
+            }
+
+            return newVersionOfData;
+        }
+
         private IQualityCheckingResult IsSampleMatrixTypeDataMeetQualityCheckingRule(Hatfield.EnviroData.Core.Action sampleActionData, 
                                                                                      StringCompareCheckingRule rule)
         {
@@ -62,7 +126,7 @@ namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
 
             var sampleResults = from featureAction in sampleActionData.FeatureActions
                                 from result in featureAction.Results
-                                where featureAction.SamplingFeature.SamplingFeatureTypeCV == "Site"
+                                where featureAction.SamplingFeature.SamplingFeatureTypeCV == QualityAssuranceConstants.SiteSampleFeatureTypeCV
                                 select result;
 
             foreach(var result in sampleResults)
