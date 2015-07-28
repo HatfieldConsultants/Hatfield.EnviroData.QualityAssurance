@@ -58,9 +58,13 @@ namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
 
                 return GenerateCorrectSampleMatrixTypeDataNewVersion(castedData, castedRule);
             }
-            else
+            else if(checkResult.Level == QualityCheckingResultLevel.Info)
             {
                 return new QualityCheckingResult("Sample data meets quality checking rule. No correction is needed.", false, QualityCheckingResultLevel.Info);
+            }
+            else
+            {
+                return new QualityCheckingResult("Sample data/Data checking rule is not valid. No correction could be applied.", false, QualityCheckingResultLevel.Error);
             }
         }
 
@@ -99,9 +103,9 @@ namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
         private Hatfield.EnviroData.Core.Action CorrectSampleMatrixTypeData(Hatfield.EnviroData.Core.Action sampleActionData,
                                                                             StringCompareCheckingRule rule)
         {
-            var newVersionOfData = _dataVersioningHelper.CloneDataToNewVersion(sampleActionData);
+            var newVersionOfData = _dataVersioningHelper.CloneActionData(sampleActionData);
 
-            foreach(var featureAction in sampleActionData.FeatureActions)
+            foreach (var featureAction in newVersionOfData.FeatureActions)
             {
                 foreach(var result in featureAction.Results)
                 {
