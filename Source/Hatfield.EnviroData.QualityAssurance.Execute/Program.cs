@@ -25,7 +25,7 @@ namespace Hatfield.EnviroData.QualityAssurance.Execute
 
             Console.WriteLine("Start Quality Checking Process...");
 
-            var qcChainConfiguration = ConfigureQualityCheckingChain(wqDataRepository, "Water", false, "Water");
+            var qcChainConfiguration = ConfigureQualityCheckingChain(true, wqDataRepository, "Test", false, "Water");
 
             var versioningHelper = new DataVersioningHelper();
             var factory = new DataQualityCheckingToolFactory(versioningHelper, relationActionTypeRepository);
@@ -43,14 +43,15 @@ namespace Hatfield.EnviroData.QualityAssurance.Execute
             Console.ReadLine();
         }
 
-        private static DataQualityCheckingChainConfiguration ConfigureQualityCheckingChain(IWQDataRepository wqDataRepository, 
+        private static DataQualityCheckingChainConfiguration ConfigureQualityCheckingChain(bool needCorrection,
+                                                                                            IWQDataRepository wqDataRepository, 
                                                                                             string expectedString, 
                                                                                             bool isCaseSensitive, 
                                                                                             string correctionValue)
         {
             var chainConfiguration = new DataQualityCheckingChainConfiguration();
 
-            chainConfiguration.NeedToCorrectData = false;
+            chainConfiguration.NeedToCorrectData = needCorrection;
             chainConfiguration.DataFetchCriteria = new GetAllWaterQualitySampleDataCriteria(wqDataRepository);
 
             var sampleMatrixCheckingRuleConfiguration = new DataQualityCheckingToolConfiguration();
