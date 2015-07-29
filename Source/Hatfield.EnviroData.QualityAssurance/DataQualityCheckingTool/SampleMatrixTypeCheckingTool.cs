@@ -125,13 +125,18 @@ namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
         private IQualityCheckingResult IsSampleMatrixTypeDataMeetQualityCheckingRule(Hatfield.EnviroData.Core.Action sampleActionData, 
                                                                                      StringCompareCheckingRule rule)
         {
-            var resultStringBuilder = new StringBuilder();
-            var needCorrection = false;
-
             var sampleResults = from featureAction in sampleActionData.FeatureActions
                                 from result in featureAction.Results
                                 where featureAction.SamplingFeature.SamplingFeatureTypeCV == QualityAssuranceConstants.SiteSampleFeatureTypeCV
                                 select result;
+
+            if (sampleResults == null || !sampleResults.Any())
+            {
+                return new QualityCheckingResult("No results found for the sample action.", false, QualityCheckingResultLevel.Info);
+            }
+
+            var resultStringBuilder = new StringBuilder();
+            var needCorrection = false;
 
             foreach(var result in sampleResults)
             {
@@ -146,7 +151,7 @@ namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
                 }
                 else
                 {
-                    var stringCompareOption = rule.IsCaseSensitive ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+                    var stringCompareOption = rule.IsCaseSensitive ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
 
                     if (string.Equals(sampleMatrixExtension.PropertyValue, rule.ExpectedValue, stringCompareOption))
                     {

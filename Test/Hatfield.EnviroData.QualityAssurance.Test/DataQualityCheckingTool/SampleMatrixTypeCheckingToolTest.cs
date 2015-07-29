@@ -55,7 +55,7 @@ namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
         public void ValidCheckTest()
         {
             var testActionData = CreateTestAction();
-            var testQualityCheckingRule = new StringCompareCheckingRule("Water", true, "test");
+            var testQualityCheckingRule = new StringCompareCheckingRule("Water", false, "test");
 
             var mockVersionHelper = new Mock<IDataVersioningHelper>();
             var mockRepository = new Mock<IRepository<CV_RelationshipType>>();
@@ -194,7 +194,7 @@ namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
                 FeatureActions = new List<FeatureAction> { 
                     new FeatureAction{
                         SamplingFeature = new SamplingFeature{
-                            SamplingFeatureTypeCV = "Site"
+                            SamplingFeatureTypeCV = "Specimen"
                         },
                         Results = new List<Result>{
                             new Result{

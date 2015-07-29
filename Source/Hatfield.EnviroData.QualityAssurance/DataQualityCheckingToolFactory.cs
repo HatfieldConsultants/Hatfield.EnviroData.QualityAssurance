@@ -28,7 +28,7 @@ namespace Hatfield.EnviroData.QualityAssurance
             }
             else
             {
-                throw new NotImplementedException();
+                throw new ArgumentException("Data Quality Checking Tool factory could not generate tool for " + toolConfiguration.DataQualityCheckingToolType.Name);
             }
             
         }

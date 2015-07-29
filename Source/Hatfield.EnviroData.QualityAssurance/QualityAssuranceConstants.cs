@@ -8,6 +8,6 @@ namespace Hatfield.EnviroData.QualityAssurance
     public static class QualityAssuranceConstants
     {
         public static string SubVersionRelationCVType = "Is new version of";
-        public static string SiteSampleFeatureTypeCV = "Site";
+        public static string SiteSampleFeatureTypeCV = "Specimen";
     }
 }

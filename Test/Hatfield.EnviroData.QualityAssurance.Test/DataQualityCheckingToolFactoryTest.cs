@@ -44,7 +44,7 @@ namespace Hatfield.EnviroData.QualityAssurance.Test
             var mockRepository = new Mock<IRepository<CV_RelationshipType>>();
             var factory = new DataQualityCheckingToolFactory(mockVersionHelper.Object, mockRepository.Object);
 
-            Assert.Throws(typeof(NotImplementedException), () => factory.GenerateDataQualityCheckingTool(configurationToTest));
+            Assert.Throws(typeof(ArgumentException), () => factory.GenerateDataQualityCheckingTool(configurationToTest));
 
 
         }
