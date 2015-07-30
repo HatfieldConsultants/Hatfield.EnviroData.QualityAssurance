@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Hatfield.EnviroData.Core;
+using Hatfield.WQDefaultValueProvider;
 using Hatfield.EnviroData.Core.Repositories;
 using Hatfield.EnviroData.QualityAssurance;
 using Hatfield.EnviroData.WQDataProfile;
@@ -23,11 +24,14 @@ namespace Hatfield.EnviroData.QualityAssurance.Execute
             var relationActionTypeRepository = new Repository<CV_RelationshipType>(dbContext);
             var wqDataRepository = new WQDataRepository(dbContext);
 
+            var staticWQDefaultValueProvider = new StaticWQDefaultValueProvider();
+            staticWQDefaultValueProvider.Init();
+
             Console.WriteLine("Start Quality Checking Process...");
 
             var qcChainConfiguration = ConfigureQualityCheckingChain(true, wqDataRepository, "Test", false, "Water");
 
-            var versioningHelper = new DataVersioningHelper();
+            var versioningHelper = new DataVersioningHelper(staticWQDefaultValueProvider);
             var factory = new DataQualityCheckingToolFactory(versioningHelper, relationActionTypeRepository);
             var qualiltyChecker = new WaterQualityDataQualityChecker(qcChainConfiguration, factory, wqDataRepository);
 

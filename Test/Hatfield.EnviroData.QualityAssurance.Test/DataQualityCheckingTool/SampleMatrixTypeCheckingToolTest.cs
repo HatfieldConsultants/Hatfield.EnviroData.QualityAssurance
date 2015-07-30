@@ -58,6 +58,7 @@ namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
             var testQualityCheckingRule = new StringCompareCheckingRule("Water", false, "test");
 
             var mockVersionHelper = new Mock<IDataVersioningHelper>();
+            mockVersionHelper.Setup(x => x.GetLatestVersionActionData(It.IsAny<Hatfield.EnviroData.Core.Action>())).Returns(testActionData);
             var mockRepository = new Mock<IRepository<CV_RelationshipType>>();
 
             var testTool = new SampleMatrixTypeCheckingTool(mockVersionHelper.Object, mockRepository.Object);
@@ -155,7 +156,10 @@ namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
                                 })
                                 .AsQueryable());
 
-            var testTool = new SampleMatrixTypeCheckingTool(new DataVersioningHelper(), mockRepository.Object);
+            var mockDefaultValueProvider = new Mock<IWQDefaultValueProvider>();
+            mockDefaultValueProvider.Setup(x => x.ActionRelationshipTypeSubVersion).Returns("is new version of");
+
+            var testTool = new SampleMatrixTypeCheckingTool(new DataVersioningHelper(mockDefaultValueProvider.Object), mockRepository.Object);
 
             var correctedResult = testTool.Correct(testActionData, testQualityCheckingRule);
 

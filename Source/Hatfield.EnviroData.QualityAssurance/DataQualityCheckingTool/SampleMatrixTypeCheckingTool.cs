@@ -43,7 +43,8 @@ namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
                 var castedData = (Hatfield.EnviroData.Core.Action)data;
                 var castedRule = (StringCompareCheckingRule)dataQualityCheckingRule;
 
-                return IsSampleMatrixTypeDataMeetQualityCheckingRule(castedData, castedRule);
+                var latestVersionData = _dataVersioningHelper.GetLatestVersionActionData(castedData);
+                return IsSampleMatrixTypeDataMeetQualityCheckingRule(latestVersionData, castedRule);
             }
         }
 
@@ -56,7 +57,8 @@ namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
                 var castedData = (Hatfield.EnviroData.Core.Action)data;
                 var castedRule = (StringCompareCheckingRule)dataQualityCheckingRule;
 
-                return GenerateCorrectSampleMatrixTypeDataNewVersion(castedData, castedRule);
+                var latestVersionData = _dataVersioningHelper.GetLatestVersionActionData(castedData);
+                return GenerateCorrectSampleMatrixTypeDataNewVersion(latestVersionData, castedRule);
             }
             else if(checkResult.Level == QualityCheckingResultLevel.Info)
             {
@@ -125,6 +127,11 @@ namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
         private IQualityCheckingResult IsSampleMatrixTypeDataMeetQualityCheckingRule(Hatfield.EnviroData.Core.Action sampleActionData, 
                                                                                      StringCompareCheckingRule rule)
         {
+            if (sampleActionData == null || sampleActionData.FeatureActions == null || !sampleActionData.FeatureActions.Any())
+            {
+                return new QualityCheckingResult("No results found for the sample action.", false, QualityCheckingResultLevel.Info);
+            }
+
             var sampleResults = from featureAction in sampleActionData.FeatureActions
                                 from result in featureAction.Results
                                 where featureAction.SamplingFeature.SamplingFeatureTypeCV == QualityAssuranceConstants.SiteSampleFeatureTypeCV
