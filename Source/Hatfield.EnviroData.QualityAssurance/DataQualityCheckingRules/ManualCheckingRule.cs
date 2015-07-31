@@ -7,6 +7,6 @@ namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingRules
 {
     public class ManualCheckingRule : IDataQualityCheckingRule
     {
-        public IEnumerable<ManulaCheckingRuleItem> Items { get; set; }
+        public IEnumerable<ManualCheckingRuleItem> Items { get; set; }
     }
 }
