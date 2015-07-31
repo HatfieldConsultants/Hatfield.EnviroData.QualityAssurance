@@ -90,7 +90,7 @@
     <Compile Include="DataFetchCriterias\GetAllWaterQualitySampleDataCriteria.cs" />
     <Compile Include="DataFetchCriterias\GetWaterQualityChemistryDataByIdsCriteria.cs" />
     <Compile Include="DataQualityCheckingRules\ManualCheckingRule.cs" />
-    <Compile Include="DataQualityCheckingRules\ManulaCheckingRuleItem.cs" />
+    <Compile Include="DataQualityCheckingRules\ManualCheckingRuleItem.cs" />
     <Compile Include="DataQualityCheckingTool\ManualQualityCheckingTool.cs" />
     <Compile Include="QualityAssuranceConstants.cs" />
     <Compile Include="QualityCheckingResultLevel.cs" />
