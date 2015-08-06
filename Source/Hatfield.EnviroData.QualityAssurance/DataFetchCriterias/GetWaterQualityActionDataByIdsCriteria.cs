@@ -8,12 +8,12 @@ using Hatfield.EnviroData.QualityAssurance.DataQualityCheckingRules;
 
 namespace Hatfield.EnviroData.QualityAssurance.DataFetchCriterias
 {
-    public class GetWaterQualityChemistryDataByIdsCriteria : IDataFetchCriteria
+    public class GetWaterQualityActionDataByIdsCriteria : IDataFetchCriteria
     {
         private IWQDataRepository _wqDataRepository;
-        private ManualCheckingRule _manualCheckingRule;
+        private ChemistryValueCheckingRule _manualCheckingRule;
 
-        public GetWaterQualityChemistryDataByIdsCriteria(IWQDataRepository wqDataRepository, ManualCheckingRule manualCheckingRule)
+        public GetWaterQualityActionDataByIdsCriteria(IWQDataRepository wqDataRepository, ChemistryValueCheckingRule manualCheckingRule)
         {
             _wqDataRepository = wqDataRepository;
             _manualCheckingRule = manualCheckingRule;

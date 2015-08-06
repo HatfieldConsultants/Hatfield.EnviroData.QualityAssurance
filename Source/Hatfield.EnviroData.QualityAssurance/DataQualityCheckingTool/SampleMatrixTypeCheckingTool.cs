@@ -26,13 +26,13 @@ namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
 
         public IQualityCheckingResult Check(object data, IDataQualityCheckingRule dataQualityCheckingRule)
         {
-            if (!IsDataSupport(data))
+            if (!IsDataSupported(data))
             {
                 return new QualityCheckingResult("Data is not supported by the Quality Checking Tool.", 
                                                  false, 
                                                  QualityCheckingResultLevel.Error);
             }
-            else if (!IsDataQualityChekcingRuleSupported(dataQualityCheckingRule))
+            else if (!IsDataQualityCheckingRuleSupported(dataQualityCheckingRule))
             {
                 return new QualityCheckingResult("Data Quality Checking Rule is not supported by the Quality Checking Tool.", 
                                                  false, 
@@ -70,13 +70,13 @@ namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
             }
         }
 
-        public bool IsDataQualityChekcingRuleSupported(IDataQualityCheckingRule dataQualityCheckingRule)
+        public bool IsDataQualityCheckingRuleSupported(IDataQualityCheckingRule dataQualityCheckingRule)
         {
             var isSupported = dataQualityCheckingRule is StringCompareCheckingRule;
             return isSupported;
         }
 
-        public bool IsDataSupport(object data)
+        public bool IsDataSupported(object data)
         {
             var isSupported = data is Hatfield.EnviroData.Core.Action;
             return isSupported;
