@@ -9,7 +9,7 @@ namespace Hatfield.EnviroData.QualityAssurance
     {
         IQualityCheckingResult Check(object data, IDataQualityCheckingRule dataQualityCheckingRule);
         IQualityCheckingResult Correct(object data, IDataQualityCheckingRule dataQualityCheckingRule);
-        bool IsDataQualityChekcingRuleSupported(IDataQualityCheckingRule dataQualityCheckingRule);
-        bool IsDataSupport(object data);
+        bool IsDataQualityCheckingRuleSupported(IDataQualityCheckingRule dataQualityCheckingRule);
+        bool IsDataSupported(object data);
     }
 }

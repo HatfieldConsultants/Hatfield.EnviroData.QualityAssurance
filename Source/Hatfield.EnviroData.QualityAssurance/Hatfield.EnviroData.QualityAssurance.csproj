@@ -88,11 +88,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataFetchCriterias\GetAllWaterQualitySampleDataCriteria.cs" />
-    <Compile Include="DataFetchCriterias\GetWaterQualityChemistryDataByIdsCriteria.cs" />
-    <Compile Include="DataQualityCheckingRules\ManualCheckingRule.cs" />
-    <Compile Include="DataQualityCheckingRules\ManualCheckingRuleItem.cs" />
-    <Compile Include="DataQualityCheckingTool\ManualQualityCheckingTool.cs" />
+    <Compile Include="DataFetchCriterias\GetWaterQualityActionDataByIdsCriteria.cs" />
+    <Compile Include="DataQualityCheckingRules\ChemistryValueCheckingRule.cs" />
+    <Compile Include="DataQualityCheckingRules\ChemistryValueCheckingRuleItem.cs" />
+    <Compile Include="DataQualityCheckingTool\ChemistryValueCheckingTool.cs" />
     <Compile Include="QualityAssuranceConstants.cs" />
+    <Compile Include="ChemistryCheckingResult.cs" />
     <Compile Include="QualityCheckingResultLevel.cs" />
     <Compile Include="WaterQualityDataQualityChecker.cs" />
     <Compile Include="DataQualityCheckingChainConfiguration.cs" />

@@ -87,8 +87,8 @@ namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
 
             var testTool = new SampleMatrixTypeCheckingTool(mockVersionHelper.Object, mockRepository.Object);
 
-            Assert.True(testTool.IsDataQualityChekcingRuleSupported(successTestQualityCheckingRule));
-            Assert.False(testTool.IsDataQualityChekcingRuleSupported(mockQualityCheckingRule.Object));
+            Assert.True(testTool.IsDataQualityCheckingRuleSupported(successTestQualityCheckingRule));
+            Assert.False(testTool.IsDataQualityCheckingRuleSupported(mockQualityCheckingRule.Object));
         }
 
         [Test]
@@ -100,8 +100,8 @@ namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
             var testTool = new SampleMatrixTypeCheckingTool(mockVersionHelper.Object, mockRepository.Object);
             var supportData = new Hatfield.EnviroData.Core.Action();
 
-            Assert.True(testTool.IsDataSupport(supportData));
-            Assert.False(testTool.IsDataSupport(1));
+            Assert.True(testTool.IsDataSupported(supportData));
+            Assert.False(testTool.IsDataSupported(1));
         }
 
         [Test]

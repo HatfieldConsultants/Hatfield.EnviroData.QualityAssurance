@@ -66,6 +66,7 @@
     <Compile Include="DataFetchCriterias\GetAllWaterQualitySampleDataCriteriaTest.cs" />
     <Compile Include="DataQualityCheckingRules\StringCompareCheckingRuleTest.cs" />
     <Compile Include="DataQualityCheckingToolFactoryTest.cs" />
+    <Compile Include="DataQualityCheckingTool\ChemistryValueCheckingToolTest.cs" />
     <Compile Include="DataQualityCheckingTool\SampleMatrixTypeCheckingToolTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WaterQualityDataQualityCheckerTest.cs" />
