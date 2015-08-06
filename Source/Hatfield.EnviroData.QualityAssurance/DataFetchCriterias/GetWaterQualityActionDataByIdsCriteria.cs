@@ -11,24 +11,50 @@ namespace Hatfield.EnviroData.QualityAssurance.DataFetchCriterias
     public class GetWaterQualityActionDataByIdsCriteria : IDataFetchCriteria
     {
         private IWQDataRepository _wqDataRepository;
-        private ChemistryValueCheckingRule _manualCheckingRule;
+        private ChemistryValueCheckingRule _chemistryValueCheckingRule;
 
         public GetWaterQualityActionDataByIdsCriteria(IWQDataRepository wqDataRepository, ChemistryValueCheckingRule manualCheckingRule)
         {
-            _wqDataRepository = wqDataRepository;
-            _manualCheckingRule = manualCheckingRule;
+            if (wqDataRepository == null)
+            {
+                throw new ArgumentNullException("Water quality data repository is null. GetAllWaterQualityDataCriteria initial fail.");
+            }
+            else if (manualCheckingRule == null)
+            {
+                throw new ArgumentNullException("Checking rule is null. GetAllWaterQualityDataCriteria initial fail.");
+            }
+            else
+            {
+                _wqDataRepository = wqDataRepository;
+                _chemistryValueCheckingRule = manualCheckingRule;
+            }
+
         }
 
         public IEnumerable<object> FetchData()
         {
-            //fetch data by the action ids in the chekcing rule
-            throw new NotImplementedException();
+            var allWQSampleDataActions = _wqDataRepository.GetAllWQSampleDataActions();
+            var result = new List<Core.Action>();
+
+            foreach (ChemistryValueCheckingRuleItem ruleItem in _chemistryValueCheckingRule.Items)
+            {
+                var matchingAction = allWQSampleDataActions.Where(x => x.ActionID.Equals(ruleItem.ActionId)).FirstOrDefault();
+
+                if (matchingAction != null)
+                {
+                    result.Add(matchingAction);
+                }
+            }
+
+            return result;
         }
 
         public string CriteriaDescription
         {
-            //return description
-            get { throw new NotImplementedException(); }
+            get
+            {
+                return "GetWaterQualityActionDataByIdsCriteria: fetch water quality data with given ids from the database";
+            }
         }
     }
 }
