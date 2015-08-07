@@ -42,6 +42,7 @@ namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
             var action = new Core.Action();
             action.ActionID = ActionId;
             action.FeatureActions.Add(featureAction);
+            action.ActionTypeCV = "Specimen analysis";
             var actions = new List<Core.Action>();
             actions.Add(action);
             supportedData = actions;

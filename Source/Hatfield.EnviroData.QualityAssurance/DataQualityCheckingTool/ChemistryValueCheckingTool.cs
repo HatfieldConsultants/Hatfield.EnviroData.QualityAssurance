@@ -116,23 +116,27 @@ namespace Hatfield.EnviroData.QualityAssurance.DataQualityCheckingTool
                 // Verify that each Action is a Chemistry action
                 foreach (Core.Action action in castedData)
                 {
-                    var featureActions = action.FeatureActions;
-
-                    // Assume that Chemistry actions contain only 1 Feature action
-                    if (featureActions.Count() != 1)
+                    if (action.ActionTypeCV != "Specimen analysis")
                     {
                         return false;
                     }
-                    else
-                    {
-                        var samplingFeature = featureActions.FirstOrDefault().SamplingFeature;
+                    //var featureActions = action.FeatureActions;
 
-                        // TODO Move hard-coded "specimen" to static constants
-                        if (samplingFeature.SamplingFeatureTypeCV != "Specimen")
-                        {
-                            return false;
-                        }
-                    }
+                    //// Assume that Chemistry actions contain only 1 Feature action
+                    //if (featureActions.Count() != 1)
+                    //{
+                    //    return false;
+                    //}
+                    //else
+                    //{
+                    //    var samplingFeature = featureActions.FirstOrDefault().SamplingFeature;
+
+                    //    // TODO Move hard-coded "specimen" to static constants
+                    //    if (samplingFeature.SamplingFeatureTypeCV != "Specimen")
+                    //    {
+                    //        return false;
+                    //    }
+                    //}
                 }
             }
 
