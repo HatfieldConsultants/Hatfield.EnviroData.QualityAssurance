@@ -87,6 +87,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataFetchCriterias\GetActionDataByIdsCriteria.cs" />
     <Compile Include="DataFetchCriterias\GetAllWaterQualitySampleDataCriteria.cs" />
     <Compile Include="DataFetchCriterias\GetWaterQualityActionDataByIdsCriteria.cs" />
     <Compile Include="DataQualityCheckingRules\ChemistryValueCheckingRule.cs" />
