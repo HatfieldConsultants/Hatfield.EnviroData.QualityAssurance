@@ -30,7 +30,8 @@ namespace Hatfield.EnviroData.QualityAssurance.DataFetchCriterias
 
         public string CriteriaDescription
         {
-            get {
+            get
+            {
                 return "GetAllWaterQualityDataCriteria: fetch all water quality data in the database";
             }
         }
