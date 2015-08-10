@@ -63,7 +63,7 @@ namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
             var testResult = testTool.Check(supportedData, mockChemistryValueCheckingRule.Object);
 
             Assert.NotNull(testResult);
-            Assert.AreEqual("See the inner list for detailed results.", testResult.Message);
+            Assert.AreEqual("", testResult.Message);
             Assert.IsFalse(testResult.NeedCorrection);
             Assert.AreEqual(QualityCheckingResultLevel.Info, testResult.Level);
         }
@@ -160,6 +160,12 @@ namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
         [Test]
         public void DataNeedsCorrectionTest()
         {
+            var expectedMessageBuilder = new StringBuilder();
+            expectedMessageBuilder.AppendLine("Sample Result: 00000000-0000-0000-0000-000000000000 on " + DateTime.Now.ToString("MMM-dd-yyyy") + "'s value is 101, the expected value is 102. Need data correction.");
+            expectedMessageBuilder.AppendLine();
+            expectedMessageBuilder.AppendLine();
+            expectedMessageBuilder.AppendLine("Create new version for correction data.");
+
             var rule = new ChemistryValueCheckingRule();
             var ruleItem = new ChemistryValueCheckingRuleItem();
             var correctionValue = MeasurementValue + 1;
@@ -171,7 +177,7 @@ namespace Hatfield.EnviroData.QualityAssurance.Test.DataQualityCheckingTool
             var castedData = (IEnumerable<Core.Action>)supportedData;
 
             Assert.NotNull(qcResult);
-            Assert.AreEqual("See the inner list for detailed results.", qcResult.Message);
+            Assert.AreEqual(expectedMessageBuilder.ToString(), qcResult.Message);
             Assert.AreEqual(QualityCheckingResultLevel.Info, qcResult.Level);
             Assert.True(qcResult.NeedCorrection);
             Assert.AreEqual(correctionValue, castedData.First().RelatedActions.First().

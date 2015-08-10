@@ -6,17 +6,15 @@ using System.Text;
 namespace Hatfield.EnviroData.QualityAssurance
 {
     public class ChemistryCheckingResult : IQualityCheckingResult
-    {
-        public string Message { get; set; }
+    {        
         public bool NeedCorrection { get; set; }
         public QualityCheckingResultLevel Level { get; set; }
-        public List<IQualityCheckingResult> IQualityCheckingResults { get; private set; }
+        public List<IQualityCheckingResult> QualityCheckingResults { get; private set; }
 
         public ChemistryCheckingResult()
         {
-            IQualityCheckingResults = new List<IQualityCheckingResult>();
-
-            Message = "See the inner list for detailed results.";
+            QualityCheckingResults = new List<IQualityCheckingResult>();
+            
             NeedCorrection = false;
             Level = QualityCheckingResultLevel.Info;
         }
@@ -35,7 +33,20 @@ namespace Hatfield.EnviroData.QualityAssurance
                 Level = result.Level;
             }
 
-            IQualityCheckingResults.Add(result);
+            QualityCheckingResults.Add(result);
+        }
+
+        public string Message
+        {
+            get {
+                var messageBuilder = new StringBuilder();
+                foreach (var result in QualityCheckingResults)
+                {
+                    messageBuilder.AppendLine(result.Message);
+                }
+
+                return messageBuilder.ToString();
+            }
         }
     }
 }
